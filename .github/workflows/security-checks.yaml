@@ -32,7 +32,7 @@ jobs:
       - name: Checkov GitHub Action
         uses: bridgecrewio/checkov-action@v12
         with:
-          directory: terraform
+          directory: terraform/environments/sand01
           output_format: sarif
           output_file_path: checkov-results.sarif
           soft_fail: true
