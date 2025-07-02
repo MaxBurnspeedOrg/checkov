@@ -1,6 +1,7 @@
 # --- Demo S3 Bucket (intentional error: public ACL) ---
 
-# checkov:skip=CKV_AWS_21 CKV2_AWS_62: Public ACL is intentional for demo purposes
+# checkov:skip=CKV_AWS_21: Public ACL is intentional for demo purposes
+# checkov:skip=CKV2_AWS_62: Public ACL is intentional for demo purposes
 resource "aws_s3_bucket" "demo_bucket" {
   bucket = "demo-insecure-bucket-${random_id.bucket_id.hex}"
   acl    = "public-read" # Checkov will flag this as insecure
@@ -12,7 +13,7 @@ resource "aws_s3_bucket" "demo_bucket" {
 
 # --- Demo EC2 Instance (intentional error: no security group) ---
 
-# checkov:skip=CKV_AWS_126: Ensure that detailed monitoring is enabled for EC2 instances
+# checkov:skip=CKV_AWS_126: Detailed monitoring is intentionally disabled for demo
 resource "aws_instance" "demo_ec2" {
   ami           = "ami-0c55b159cbfafe1f0" # Example AMI, update as needed
   instance_type = "t2.micro"
@@ -51,6 +52,7 @@ resource "aws_iam_user" "demo_user" {
   name = "demo_user"
 }
 
+# checkov:skip=CKV_AWS_40: Wildcard IAM policy is intentional for demo
 resource "aws_iam_user_policy" "demo_policy" {
   name = "demo_policy"
   user = aws_iam_user.demo_user.name
