@@ -27,6 +27,7 @@ resource "aws_instance" "demo_ec2" {
   }
 }
 
+/*
 # --- Demo Security Group (intentional error: open to the world) ---
 
 # checkov:skip=CKV_AWS_24: Open ingress is intentional for demo
@@ -50,6 +51,7 @@ resource "aws_security_group" "demo_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
+*/
 
 # --- Demo IAM User (intentional error: inline policy with wildcard) ---
 
