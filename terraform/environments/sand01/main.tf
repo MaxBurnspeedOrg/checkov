@@ -3,7 +3,8 @@ module "VPC" {
 }
 
 # --- Demo S3 Bucket (intentional error: public ACL) ---
-# checkov:skip=CKV2_AWS_62: i dont need event notifications
+# checkov:skip=CKV_AWS_21: Public ACL is intentional for demo purposes
+# checkov:skip=CKV2_AWS_62: I don't need event notifications
 resource "aws_s3_bucket" "demo_bucket" {
   bucket = "demo-insecure-bucket-${random_id.bucket_id.hex}"
   acl    = "public-read" # Checkov will flag this as insecure
@@ -11,10 +12,6 @@ resource "aws_s3_bucket" "demo_bucket" {
   tags = {
     Name = "DemoInsecureBucket"
   }
-}
-
-resource "random_id" "bucket_id" {
-  byte_length = 4
 }
 
 # --- Demo EC2 Instance (intentional error: no security group) ---
@@ -29,6 +26,7 @@ resource "aws_instance" "demo_ec2" {
 }
 
 # --- Demo Security Group (intentional error: open to the world) ---
+# checkov:skip=CKV_AWS_24: Open ingress is intentional for demo
 resource "aws_security_group" "demo_sg" {
   name        = "demo_sg"
   description = "Allow all inbound traffic (insecure)"
