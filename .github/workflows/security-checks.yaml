@@ -26,7 +26,8 @@ jobs:
         uses: hashicorp/setup-terraform@v3
 
       - name: Terraform Init
-        run: terraform -chdir=terraform init
+        run: terraform init
+        working-directory: terraform/environments/sand01
 
       - name: Checkov GitHub Action
         uses: bridgecrewio/checkov-action@v12
