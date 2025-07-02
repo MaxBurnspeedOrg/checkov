@@ -3,6 +3,7 @@ module "VPC" {
 }
 
 # --- Demo S3 Bucket (intentional error: public ACL) ---
+# checkov:skip=CKV2_AWS_62: i dont need event notifications
 resource "aws_s3_bucket" "demo_bucket" {
   bucket = "demo-insecure-bucket-${random_id.bucket_id.hex}"
   acl    = "public-read" # Checkov will flag this as insecure
