@@ -1,10 +1,6 @@
-module "VPC" {
-    vpc_name = var.vpc_name
-}
-
 # --- Demo S3 Bucket (intentional error: public ACL) ---
-# checkov:skip=CKV_AWS_21: Public ACL is intentional for demo purposes
-# checkov:skip=CKV2_AWS_62: I don't need event notifications
+
+# checkov:skip=CKV_AWS_21 CKV2_AWS_62: Public ACL is intentional for demo purposes
 resource "aws_s3_bucket" "demo_bucket" {
   bucket = "demo-insecure-bucket-${random_id.bucket_id.hex}"
   acl    = "public-read" # Checkov will flag this as insecure
@@ -15,6 +11,7 @@ resource "aws_s3_bucket" "demo_bucket" {
 }
 
 # --- Demo EC2 Instance (intentional error: no security group) ---
+
 # checkov:skip=CKV_AWS_126: Ensure that detailed monitoring is enabled for EC2 instances
 resource "aws_instance" "demo_ec2" {
   ami           = "ami-0c55b159cbfafe1f0" # Example AMI, update as needed
@@ -27,6 +24,7 @@ resource "aws_instance" "demo_ec2" {
 }
 
 # --- Demo Security Group (intentional error: open to the world) ---
+
 # checkov:skip=CKV_AWS_24: Open ingress is intentional for demo
 resource "aws_security_group" "demo_sg" {
   name        = "demo_sg"
