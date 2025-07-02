@@ -27,12 +27,12 @@ jobs:
 
       - name: Terraform Init
         run: terraform init
-        # working-directory: terraform/environments/sand01
+        working-directory: terraform
 
       - name: Checkov GitHub Action
         uses: bridgecrewio/checkov-action@v12
         with:
-          # directory: environments/sand01
+          directory: terraform
           output_format: sarif
           output_file_path: checkov-results.sarif
           soft_fail: true
