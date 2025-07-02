@@ -1,0 +1,35 @@
+name: Security Check
+on:
+    pull_request:
+        branches:
+            - main
+    push:
+        branches:
+            - main
+
+    workflow_dispatch:
+
+jobs:
+    security-checks:
+        permissions:
+            contents: read
+            security-events: write
+            actions: read
+
+        runs-on: ubuntu-latest
+        
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v3
+
+            - name: Checkov GitHub Action
+              uses: bridgecrewio/checkov-action@v12
+              with: 
+                directory: terraform
+                output_format: sarif
+                output_file_path: checkov-results.sarif
+            
+            - name: Upload SARIF to GitHub Code Scanning
+              uses: github/codeql-action/upload-sarif@v3
+              with:
+                sarif_file: checkov-results.sarif
