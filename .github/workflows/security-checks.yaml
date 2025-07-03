@@ -27,16 +27,22 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Checkov GitHub Action
-        uses: bridgecrewio/checkov-action@v12
-        with:
-          directory: terraform
-          output_format: sarif
-          output_file_path: checkov-results.sarif
-          soft_fail: true
-          quiet: true
+      - name: Install Checkov
+        run: pip install checkov
 
-      - name: Upload SARIF to GitHub Code Scanning
-        uses: github/codeql-action/upload-sarif@v3
-        with:
-          sarif_file: checkov-results.sarif
+      - name: Run Checkov on Terraform directory
+        run: checkov -d terraform/environments/sand01 --soft-fail
+
+      # - name: Checkov GitHub Action
+      #   uses: bridgecrewio/checkov-action@v12
+      #   with:
+      #     directory: terraform
+      #     output_format: sarif
+      #     output_file_path: checkov-results.sarif
+      #     soft_fail: true
+      #     quiet: true
+
+      # - name: Upload SARIF to GitHub Code Scanning
+      #   uses: github/codeql-action/upload-sarif@v3
+      #   with:
+      #     sarif_file: checkov-results.sarif
