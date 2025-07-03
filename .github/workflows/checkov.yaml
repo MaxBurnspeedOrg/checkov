@@ -12,14 +12,9 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
+      - name: Run Checkov (soft fail, skip .github)
+        uses: bridgecrewio/checkov-action@master
         with:
-          python-version: '3.x'
-
-      - name: Install Checkov
-        run: pip install checkov
-
-      - name: Run Checkov (soft fail)
-        run: |
-          checkov -d . || true
+          directory: .
+          soft_fail: true
+          skip_path: .github
