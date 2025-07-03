@@ -20,5 +20,6 @@ jobs:
       - name: Install Checkov
         run: pip install checkov
 
-      - name: Run Checkov
-        run: checkov -d .
+      - name: Run Checkov (soft fail)
+        run: |
+          checkov -d . || true

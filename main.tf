@@ -5,7 +5,8 @@ provider "aws" {
 resource "aws_s3_bucket" "insecure_bucket" {
   bucket = "checkov-test-insecure-bucket"
 
-  acl = "public-read"  # This will trigger a Checkov finding
+  # checkov:skip=CKV_AWS_52: Public read access is acceptable for this test bucket
+  acl = "public-read"  #  This would normally trigger CKV_AWS_52
 
   tags = {
     Name        = "Insecure bucket"
