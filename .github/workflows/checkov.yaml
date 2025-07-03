@@ -5,6 +5,10 @@ on:
     branches: [main]
   pull_request:
 
+permissions:
+  contents: read
+  security-events: write  # Required to upload SARIF
+
 jobs:
   checkov:
     runs-on: ubuntu-latest
@@ -12,9 +16,16 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: Run Checkov (soft fail, skip .github)
+      - name: Run Checkov and generate SARIF (soft fail, skip .github)
         uses: bridgecrewio/checkov-action@master
         with:
           directory: .
           soft_fail: true
           skip_path: .github
+          output_format: sarif
+          output_file_path: results.sarif
+
+      - name: Upload SARIF to GitHub Code Scanning
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: results.sarif
