@@ -13,10 +13,10 @@ resource "aws_s3_bucket" "demo_bucket" {
 
 # --- Demo EC2 Instance (intentional errors for demo purposes) ---
 
-# checkov:skip=CKV_AWS_126: Detailed monitoring is intentionally disabled for demo
-# checkov:skip=CKV_AWS_135: EBS optimization is intentionally omitted
-# checkov:skip=CKV_AWS_79: IMDSv1 is used intentionally in this test config
-# checkov:skip=CKV_AWS_8: EBS encryption not enabled intentionally
+# checkov:skip=CKV2_AWS_126: "Detailed monitoring is intentionally disabled for demo"
+# checkov:skip=CKV2_AWS_135: "EBS optimization is intentionally omitted"
+# checkov:skip=CKV2_AWS_79: "IMDSv1 is used intentionally in this test config"
+# checkov:skip=CKV2_AWS_8: "EBS encryption not enabled intentionally"
 resource "aws_instance" "demo_ec2" {
   ami           = "ami-0c55b159cbfafe1f0" # Example AMI, update as needed
   instance_type = "t2.micro"
