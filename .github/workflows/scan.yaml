@@ -26,4 +26,4 @@ jobs:
         run: pip install checkov
 
       - name: Run Checkov on Terraform directory
-        run: checkov -d terraform/environments/sand01 --soft-fail
+        run: checkov -d . --soft-fail
