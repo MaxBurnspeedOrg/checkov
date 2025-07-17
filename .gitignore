@@ -1,0 +1,42 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# macOS folder attributes
+Icon?
+._*
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# Terraform
+.terraform/
+.terraform.lock.hcl
+terraform.tfstate
+terraform.tfstate.*
+crash.log
+
+# Checkov output
+checkov_report.*
+*.checkov.*
+
+# Python (optional but helpful if you're using pre-commit or pip)
+__pycache__/
+*.py[cod]
+*.egg
+*.egg-info/
+dist/
+build/
+.env
+.venv
+*.log
+
+# Logs
+*.log
+
+# System backups
+*.bak
+*.swp
+*~
