@@ -1,6 +1,6 @@
 repos:
   - repo: https://github.com/bridgecrewio/checkov.git
-    rev: 3.2.451
+    rev: 3.2.457
     hooks:
       - id: checkov
         stages: [pre-push]
