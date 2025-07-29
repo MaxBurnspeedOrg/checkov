@@ -61,7 +61,7 @@ resource "aws_security_group" "open_sg" {
 
 resource "aws_iam_policy" "over_permissive" {
   #checkov:skip=CKV_AWS_40:Wildcard actions are allowed in this test policy
-  #checkov:skip=CKV_AWS_41:Wildcard resources are needed for dev tools 
+  #checkov:skip=CKV_AWS_41:Wildcard resources are needed for dev tools
   name = "dev-over-permissive"
 
   policy = jsonencode({
@@ -93,3 +93,4 @@ resource "aws_db_instance" "rds_test" {
   publicly_accessible  = true
   skip_final_snapshot  = true
 }
+#
