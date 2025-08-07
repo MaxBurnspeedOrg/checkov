@@ -1,4 +1,4 @@
-![Checkov](https://github.com/MaxBurnspeedOrg/checkov-1/actions/workflows/checkov.yaml/badge.svg)
+![Checkov](https://github.com/MaxBurnspeedOrg/checkov/actions/workflows/checkov.yaml/badge.svg)
 
 # Checkov
 
